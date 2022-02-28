@@ -1,0 +1,19 @@
+id: header-reflected
+
+info:
+  name: Header Reflected In Response
+  author: mechboy
+  severity: low
+  tags: fuzz
+
+requests:
+  - raw:
+      - |
+        GET / HTTP/1.1
+        Host: {{Hostname}}
+        X-Forwarded-Host: hellothisismechboy
+
+    matchers:
+      - type: word
+        words:
+          - "hellothisismechboy"
